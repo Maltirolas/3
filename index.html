@@ -8,24 +8,19 @@
     <style>
         body { background: #f8f1e9; color: #1a1a1a; font-family: system-ui, sans-serif; }
         .btn { transition: all 0.3s ease; }
-        .btn:hover { transform: translateY(-4px); }
-        .reveal { animation: pop 0.4s ease; }
-        @keyframes pop { 0% { transform: scale(0.5); } 100% { transform: scale(1); } }
+        .btn:hover { transform: translateY(-3px); }
+        .active { background-color: #111827 !important; color: white !important; }
     </style>
 </head>
 <body class="min-h-screen flex">
 
-    <!-- Menu Lateral -->
-    <div class="w-80 bg-white border-r border-gray-200 p-8 flex flex-col shadow-xl">
-        <div class="text-3xl font-bold tracking-tight mb-12 text-amber-800">IMPOSSIBLE QUIZZ</div>
+    <!-- Menu Lateral Dinâmico -->
+    <div class="w-80 bg-white border-r border-gray-200 p-6 flex flex-col shadow-xl overflow-y-auto">
+        <div class="text-3xl font-bold tracking-tight mb-10 text-amber-800">80085 QUIZZ</div>
         
-        <div class="space-y-3">
-            <button onclick="showToday()" class="btn w-full text-left px-6 py-4 bg-black text-white rounded-2xl text-lg font-medium shadow-md">🏠 Hoje</button>
-            <button onclick="revealBoobs()" class="btn w-full text-left px-6 py-4 bg-amber-100 hover:bg-amber-200 rounded-2xl text-lg font-medium shadow-md">🔥 VER 80085</button>
-            <button onclick="showArchive()" class="btn w-full text-left px-6 py-4 bg-white border border-gray-300 rounded-2xl text-lg font-medium shadow-md">📼 Arquivo</button>
-        </div>
+        <div id="sidebar" class="space-y-2 flex-1"></div>
 
-        <div class="mt-auto text-sm text-gray-500">
+        <div class="mt-8 text-xs text-gray-500 border-t pt-6">
             Fui embora às 15h00 de sexta-feira<br>
             Volto: <span class="font-semibold">1 de Junho</span>
         </div>
@@ -37,68 +32,61 @@
     </div>
 
     <script>
+        const vacationDays = ["2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-25","2026-05-26","2026-05-27","2026-05-28","2026-05-29"];
+
         const dailyContent = {
-            "2026-05-18": { 
-                title: "18 de Maio • Dia 1",
-                html: `<img src="https://picsum.photos/id/1015/900/500" class="rounded-3xl shadow-2xl mx-auto"><br>
-                       <p class="text-3xl mt-8">Cheguei à praia.<br>Vocês ainda estão no Excel.</p>`
-            },
-            "2026-05-19": { 
-                title: "19 de Maio",
-                html: `<div class="text-5xl">28800 ÷ 0.36 + 69</div>
-                       <div class="text-7xl text-amber-600 mt-6 font-bold">= 80085</div>`
-            },
+            "2026-05-18": { title: "18 de Maio • Dia 1", html: `<img src="https://picsum.photos/id/1015/900/500" class="rounded-3xl shadow-2xl mx-auto"><p class="text-3xl mt-8">Cheguei à praia.<br>Vocês ainda estão no Excel.</p>` },
+            "2026-05-19": { title: "19 de Maio", html: `<div class="text-5xl">28800 ÷ 0.36 + 69</div><div class="text-7xl text-amber-600 mt-6 font-bold">= 80085</div>` },
+            
             "2026-05-20": { 
                 title: "20 de Maio • Impossible Quizz",
-                html: `<p class="text-3xl mb-8">Pergunta do dia:</p>
-                       <p class="text-2xl">Qual é o número que toda a gente quer ver mas ninguém admite?</p>
-                       <div class="grid grid-cols-3 gap-4 mt-10 max-w-md mx-auto">
-                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl text-xl">69420</button>
-                           <button onclick="correct(this)" class="btn py-6 bg-amber-200 border-2 border-amber-400 rounded-2xl text-xl font-bold">80085</button>
-                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl text-xl">42069</button>
+                html: `<p class="text-3xl mb-8">Qual é o número favorito de todo o escritório?</p>
+                       <div class="grid grid-cols-3 gap-4 mt-8">
+                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">69420</button>
+                           <button onclick="correct(this)" class="btn py-6 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">80085</button>
+                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">42069</button>
                        </div>`
             },
             "2026-05-21": { 
                 title: "21 de Maio • Impossible Quizz",
-                html: `<p class="text-3xl mb-8">Qual é o verdadeiro significado da vida?</p>
-                       <div class="space-y-4 mt-10">
-                           <button onclick="wrong(this)" class="btn w-full py-5 bg-white border-2 border-gray-300 rounded-2xl text-xl">42</button>
-                           <button onclick="wrong(this)" class="btn w-full py-5 bg-white border-2 border-gray-300 rounded-2xl text-xl">Amor</button>
-                           <button onclick="correct(this)" class="btn w-full py-5 bg-amber-200 border-2 border-amber-400 rounded-2xl text-xl font-bold">80085</button>
+                html: `<p class="text-3xl mb-8">Qual é o verdadeiro KPI mais importante nas minhas férias?</p>
+                       <div class="space-y-4 mt-8">
+                           <button onclick="wrong(this)" class="btn w-full py-5 bg-white border-2 border-gray-300 rounded-2xl">Produção</button>
+                           <button onclick="wrong(this)" class="btn w-full py-5 bg-white border-2 border-gray-300 rounded-2xl">Reuniões</button>
+                           <button onclick="correct(this)" class="btn w-full py-5 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">80085</button>
                        </div>`
             },
             "2026-05-22": { 
-                title: "22 de Maio • Desafio ASCII",
-                html: `<pre class="text-5xl leading-none mx-auto mb-8">( . )( . )<br>  (.Y.)<br>( . )( . )</pre>
-                       <button onclick="this.innerHTML='80085 = BOOBS' ; this.classList.add('reveal')" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Qual é o número desta arte?</button>`
+                title: "22 de Maio • ASCII Challenge",
+                html: `<pre class="text-5xl leading-none mx-auto mb-8">( . )( . )<br>   (.Y.)<br>  ( . )( . )</pre>
+                       <button onclick="this.innerHTML='80085 = BOOBS'; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Qual é o número?</button>`
             },
             "2026-05-25": { 
                 title: "25 de Maio • Matemática Avançada",
-                html: `<p class="text-3xl mb-8">69 × 1160 + 69 - 0 × 999999 = ?</p>
-                       <button onclick="this.innerHTML='80085' ; this.style.fontSize='3rem'" class="btn px-16 py-6 bg-amber-200 rounded-2xl text-2xl">Calcular Resposta</button>`
+                html: `<p class="text-3xl mb-8">69 × 1160 + 69 = ?</p>
+                       <button onclick="this.innerHTML='= 80085'; this.style.fontSize='2.8rem'" class="btn px-16 py-6 bg-amber-200 rounded-2xl text-2xl">Calcular</button>`
             },
             "2026-05-26": { 
-                title: "26 de Maio • Pergunta Traiçoeira",
-                html: `<p class="text-3xl mb-8">O que é que toda a gente no escritório quer ver neste momento?</p>
-                       <div class="grid grid-cols-2 gap-6 mt-10 max-w-lg mx-auto">
-                           <button onclick="wrong(this)" class="btn py-8 bg-white border-2 border-gray-300 rounded-2xl">Aumento de salário</button>
+                title: "26 de Maio • Impossible Quizz",
+                html: `<p class="text-3xl mb-8">O que toda a gente quer ver neste momento?</p>
+                       <div class="grid grid-cols-2 gap-6 mt-8">
+                           <button onclick="wrong(this)" class="btn py-8 bg-white border-2 border-gray-300 rounded-2xl">Aumento</button>
                            <button onclick="correct(this)" class="btn py-8 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">80085</button>
                        </div>`
             },
             "2026-05-27": { 
                 title: "27 de Maio • Código Secreto",
                 html: `<p class="text-3xl mb-8">Decifra: 8 0 0 8 5</p>
-                       <button onclick="this.innerHTML='BOOBS' ; this.style.color='#b45309'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-3xl">Decifrar</button>`
+                       <button onclick="this.innerHTML='BOOBS'; this.style.color='#b45309'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-3xl">Decifrar</button>`
             },
             "2026-05-28": { 
                 title: "28 de Maio • Última Pergunta",
-                html: `<p class="text-3xl mb-8">Qual é o KPI mais importante durante as minhas férias?</p>
+                html: `<p class="text-3xl mb-8">Qual é o som que faz a tua motivação ao ver este site?</p>
                        <button onclick="correct(this)" class="btn px-16 py-6 bg-amber-200 rounded-2xl text-2xl">80085</button>`
             },
             "2026-05-29": { 
                 title: "29 de Maio • Último Dia",
-                html: `<p class="text-4xl">Amanhã volto...</p>
-                       <p class="text-5xl mt-10">...mas o espírito fica em 80085 mode</p>`
+                html: `<p class="text-5xl">Amanhã volto...</p><p class="text-4xl mt-10 text-amber-600">Mentalmente continuo em 80085 mode</p>`
             }
         };
 
@@ -107,14 +95,57 @@
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
         }
 
+        function isAfterVacation() {
+            const today = new Date();
+            const end = new Date("2026-05-29");
+            return today > end;
+        }
+
+        function generateSidebar() {
+            const sidebar = document.getElementById("sidebar");
+            const todayKey = getTodayKey();
+            const todayDate = new Date();
+
+            sidebar.innerHTML = `<button onclick="showToday()" class="btn w-full text-left px-6 py-4 bg-black text-white rounded-2xl text-lg font-medium shadow-md mb-6">🏠 Hoje</button>`;
+
+            vacationDays.forEach(day => {
+                const dayDate = new Date(day);
+                if (dayDate <= todayDate) {
+                    const btn = document.createElement("button");
+                    btn.className = `btn w-full text-left px-6 py-4 bg-white border border-gray-300 rounded-2xl text-lg font-medium shadow-md`;
+                    btn.textContent = day.replace(/-/g, '/');
+                    btn.onclick = () => showDay(day);
+                    sidebar.appendChild(btn);
+                }
+            });
+        }
+
         function showToday() {
+            if (isAfterVacation()) {
+                showFinalScreen();
+                return;
+            }
             const key = getTodayKey();
+            showDay(key);
+        }
+
+        function showDay(key) {
             const day = dailyContent[key] || dailyContent["2026-05-29"];
-            
             document.getElementById("mainContent").innerHTML = `
                 <h1 class="text-5xl font-bold mb-3">${day.title}</h1>
                 <p class="text-xl text-gray-600 mb-10">Férias Mode • Impossible Quizz</p>
                 ${day.html}
+            `;
+        }
+
+        function showFinalScreen() {
+            document.getElementById("mainContent").innerHTML = `
+                <div class="text-center">
+                    <div class="text-6xl mb-8">🏁</div>
+                    <h1 class="text-5xl font-bold mb-6">Obrigado por Jogar</h1>
+                    <p class="text-4xl text-amber-600">.l.</p>
+                    <p class="text-2xl mt-12">Voltei a 1 de Junho.<br>Espero que tenham gostado do 80085.</p>
+                </div>
             `;
         }
 
@@ -126,7 +157,7 @@
 
         function wrong(btn) {
             btn.style.backgroundColor = "#fda4af";
-            btn.innerHTML = "❌ Errado... tenta outra vez";
+            btn.innerHTML = "❌ Errado... Tenta outra vez";
         }
 
         function revealBoobs() {
@@ -136,19 +167,21 @@
                 <div class="text-center">
                     <div class="text-8xl font-bold text-amber-300 tracking-widest mb-6">80085</div>
                     <div class="text-7xl text-pink-400 mb-12">BOOBS</div>
-                    <button onclick="this.parentElement.parentElement.remove()" class="px-12 py-5 bg-white text-black rounded-2xl text-xl font-medium">
-                        Fechar
-                    </button>
+                    <button onclick="this.parentElement.parentElement.remove()" class="px-12 py-5 bg-white text-black rounded-2xl text-xl font-medium">Fechar</button>
                 </div>
             `;
             document.body.appendChild(div);
         }
 
         function showArchive() {
-            alert("📼 IMPOSSIBLE QUIZZ ARCHIVE\n\nTodos os caminhos levam ao mesmo número.\n\nVolto a 1 de Junho.");
+            alert("📼 ARQUIVO COMPLETO\n\nTodos os dias levam ao mesmo resultado.\n\nVolto a 1 de Junho.");
         }
 
-        window.onload = showToday;
+        // Inicializar
+        window.onload = () => {
+            generateSidebar();
+            showToday();
+        };
     </script>
 </body>
 </html>
