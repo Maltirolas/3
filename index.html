@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IMPOSSIBLE QUIZZ 80085</title>
+    <title>DESAFIO DAS FÉRIAS DO HUGO!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body { background: #f8f1e9; color: #1a1a1a; font-family: system-ui, sans-serif; }
@@ -16,11 +16,11 @@
 
     <!-- Menu Lateral -->
     <div class="w-80 bg-white border-r border-gray-200 p-6 flex flex-col shadow-xl overflow-y-auto">
-        <div class="text-3xl font-bold tracking-tight mb-10 text-amber-800">IMPOSSIBLE QUIZZ</div>
+        <div class="text-3xl font-bold tracking-tight mb-10 text-amber-800">DESAFIO DE FÉRIAS - HUGO</div>
         <div id="sidebar" class="space-y-2 flex-1"></div>
         <div class="mt-auto text-xs text-gray-500 border-t pt-6">
-            Fui embora às 15h00 de sexta-feira<br>
-            Volto: <span class="font-semibold">1 de Junho</span>
+            Estou de férias não me chateies!<br>
+            Mas se tiveres mesmo de chatear: <span class="font-semibold">911 929 174</span>
         </div>
     </div>
 
@@ -36,66 +36,74 @@
             "2026-05-18": { 
                 title: "18 de Maio • Nível Iniciante",
                 html: `<p class="text-3xl mb-8">Primeiro desafio das férias:</p>
-                       <p class="text-2xl">Qual é o número que toda a gente quer ver mas ninguém admite em voz alta?</p>
+                       <p class="text-2xl">Escolhe o número abaixo em que o resultado da soma dos seus dígitos resulta no número 21</p>
                        <div class="grid grid-cols-3 gap-4 mt-10">
-                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">69420</button>
+                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">69827</button>
                            <button onclick="correct(this)" class="btn py-6 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">80085</button>
-                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">42069</button>
+                           <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">47769</button>
                        </div>`
             },
             "2026-05-19": { 
                 title: "19 de Maio • Morse Code",
                 html: `<p class="text-3xl mb-8">Decifra o código Morse:</p>
-                       <p class="text-4xl font-mono tracking-widest mb-8">---.. ----- ----- ---.. ..... </p>
-                       <button onclick="this.innerHTML='80085' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Decifrar</button>`
+                       <p class="text-4xl font-mono tracking-widest mb-8">-... --- --- -... ... </p>
+                       <button onclick="this.innerHTML='BOOBS' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Decifrar</button>`
             },
             "2026-05-20": { 
                 title: "20 de Maio • Binário Challenge",
                 html: `<p class="text-3xl mb-8">Converte este binário:</p>
-                       <p class="text-3xl font-mono mb-8">10000000 00000000 00000101</p>
-                       <button onclick="this.innerHTML='= 80085' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Converter</button>`
+                       <p class="text-3xl font-mono mb-8">01100010 01101111 01101111 01100010 01110011</p>
+                       <button onclick="this.innerHTML='BOOBS' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Converter</button>`
             },
             "2026-05-21": { 
                 title: "21 de Maio • Cifra de César",
                 html: `<p class="text-3xl mb-8">Decifra esta mensagem (Cifra de César +3):</p>
-                       <p class="text-3xl font-mono mb-8">ERRRBBV</p>
-                       <button onclick="this.innerHTML='BOOBS' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Decifrar</button>`
+                       <p class="text-3xl font-mono mb-8">ErrEv</p>
+                       <button onclick="this.innerHTML='BooBs' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Decifrar</button>`
             },
             "2026-05-22": { 
                 title: "22 de Maio • ASCII Art + Número",
                 html: `<pre class="text-5xl leading-none mx-auto mb-8">( . )( . )<br>   (.Y.)<br>  ( . )( . )</pre>
-                       <button onclick="this.innerHTML='O número é 80085' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Qual é o número desta arte?</button>`
+                       <button onclick="this.innerHTML='Estás a ficar um mestre... é 80085 of course' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Qual é correspondente número a este ASCII ART?</button>`
             },
             "2026-05-25": { 
                 title: "25 de Maio • Matemática Troll",
                 html: `<p class="text-3xl mb-8">Qual é o resultado desta equação?</p>
-                       <p class="text-4xl font-mono">69 × 1160 + 69 × 1 - 0 × 999999</p>
-                       <button onclick="this.innerHTML='= 80085' ; this.style.fontSize='2.5rem'" class="btn px-16 py-6 bg-amber-200 rounded-2xl text-2xl">Calcular</button>`
+                       <p class="text-4xl font-mono">69 × 1160 + 69 × 1 - 0 × 999999 + 696</p>
+                       <button onclick="this.innerHTML='Custa muito pegar na calculadora???' ; this.style.fontSize='2.5rem'" class="btn px-16 py-6 bg-amber-200 rounded-2xl text-2xl">Calcular</button>`
             },
             "2026-05-26": { 
                 title: "26 de Maio • Pergunta Traiçoeira",
-                html: `<p class="text-3xl mb-8">O que é que o chefe mais quer ver quando abre este site?</p>
+                html: `<p class="text-3xl mb-8">O que é estás à espera de ver quando lês o QR Code na minha secretária?/p>
                        <div class="grid grid-cols-2 gap-6 mt-8">
-                           <button onclick="wrong(this)" class="btn py-8 bg-white border-2 border-gray-300 rounded-2xl">Relatório urgente</button>
-                           <button onclick="correct(this)" class="btn py-8 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">80085</button>
+                           <button onclick="wrong(this)" class="btn py-8 bg-white border-2 border-gray-300 rounded-2xl">Fotos de pés</button>
+                           <button onclick="correct(this)" class="btn py-8 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">BOOBS</button>
                        </div>`
             },
             "2026-05-27": { 
                 title: "27 de Maio • Código Secreto",
-                html: `<p class="text-3xl mb-8">Qual é o significado oculto desta sequência?</p>
-                       <p class="text-4xl font-mono mb-8">B O O B S</p>
-                       <button onclick="this.innerHTML='80085' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Revelar Significado</button>`
+                html: `<p class="text-3xl mb-8">Reponde à pergunta:</p>
+                       <p class="text-4xl font-mono mb-8">Do que mais gosta um macho alfa?</p>
+                       <button onclick="this.innerHTML='Just Kidding... é BOOBS' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Criar uma família com valores</button>`
             },
             "2026-05-28": { 
                 title: "28 de Maio • Desafio Final",
-                html: `<p class="text-3xl mb-8">Último desafio antes de eu voltar:</p>
-                       <p class="text-2xl">Qual é o número que resolve todos os problemas do escritório?</p>
-                       <button onclick="correct(this)" class="btn px-16 py-6 bg-amber-200 rounded-2xl text-2xl">80085</button>`
+                html: `<p class="text-3xl mb-8">Admiro a minha capacidade de vos fazer ler um QR Code todos os dias mesmo não estando sequer no escritório...</p>
+                       <p class="text-2xl mt-6 mb-8">De 1 a 80085, quanto sentes a minha falta?</p>
+                       <div class="max-w-md mx-auto">
+                           <input id="numberInput" type="number" placeholder="Escreve um número..." 
+                                  class="w-full text-center text-3xl py-6 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-amber-400">
+                           <button onclick="validateAnswer()" 
+                                   class="mt-6 w-full py-6 bg-amber-200 hover:bg-amber-300 rounded-2xl text-2xl font-medium">
+                               Validar Resposta
+                           </button>
+                           <div id="result28" class="mt-6 text-2xl font-bold"></div>
+                       </div>`
             },
             "2026-05-29": { 
                 title: "29 de Maio • Último Dia",
-                html: `<p class="text-5xl">Amanhã volto ao escritório...</p>
-                       <p class="text-4xl mt-10 text-amber-600">...mas o espírito fica eternamente em 80085 mode</p>`
+                html: `<p class="text-5xl">Se ainda não o fizeste ... liga para o número que aparece em baixo na página</p>
+                       <p class="text-4xl mt-10 text-amber-600">e diz-me para ir dar banho ao cão</p>`
             }
         };
 
@@ -150,9 +158,9 @@
             document.getElementById("mainContent").innerHTML = `
                 <div class="text-center py-20">
                     <div class="text-6xl mb-8">🏁</div>
-                    <h1 class="text-5xl font-bold mb-6">Obrigado por Jogar</h1>
-                    <p class="text-6xl text-amber-600 mb-8">.l.</p>
-                    <p class="text-2xl">Voltei a 1 de Junho.<br>Espero que tenham gostado dos 80085.</p>
+                    <h1 class="text-5xl font-bold mb-6">Obrigado por Jogares</h1>
+                    <p class="text-6xl text-amber-600 mb-8">Haja paciência</p>
+                    <p class="text-2xl">Em Setembro à mais!</p>
                 </div>
             `;
         }
