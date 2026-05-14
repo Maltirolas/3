@@ -5,76 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Férias Mode • Volto a 1 de Junho</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         body {
-            background: #0a0a0a;
-            color: #ddd;
-            font-family: 'VT323', monospace;
-        }
-        .title {
-            font-size: 2.8rem;
-            letter-spacing: 4px;
+            background: #f8f1e9;
+            color: #1a1a1a;
+            font-family: system-ui, -apple-system, sans-serif;
         }
         .card {
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.5);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+        .btn {
+            transition: all 0.3s ease;
+        }
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.2);
         }
     </style>
 </head>
 <body class="min-h-screen flex">
+
     <!-- Menu Lateral -->
-    <div class="w-72 bg-zinc-950 border-r border-zinc-800 p-6 flex flex-col">
-        <div class="text-3xl mb-10 text-red-400">80085 DAYS</div>
+    <div class="w-80 bg-white border-r border-gray-200 p-8 flex flex-col shadow-xl">
+        <div class="text-3xl font-bold tracking-tight mb-12">FÉRIAS MODE</div>
         
-        <div class="space-y-2 mb-auto">
-            <button onclick="showPage('home')" class="w-full text-left px-4 py-3 hover:bg-zinc-900 rounded-lg transition">🏠 Hoje</button>
-            <button onclick="showPage('archive')" class="w-full text-left px-4 py-3 hover:bg-zinc-900 rounded-lg transition">📼 Arquivo</button>
-            <button onclick="revealBoobs()" class="w-full text-left px-4 py-3 hover:bg-zinc-900 rounded-lg transition text-yellow-300">🔥 VER 80085</button>
+        <div class="space-y-3">
+            <button onclick="showToday()" 
+                    class="btn w-full text-left px-6 py-4 bg-black text-white rounded-2xl text-lg font-medium shadow-md">
+                🏠 Hoje
+            </button>
+            <button onclick="revealBoobs()" 
+                    class="btn w-full text-left px-6 py-4 bg-amber-100 hover:bg-amber-200 rounded-2xl text-lg font-medium shadow-md">
+                🔥 Ver 80085
+            </button>
+            <button onclick="showArchive()" 
+                    class="btn w-full text-left px-6 py-4 bg-white border border-gray-300 rounded-2xl text-lg font-medium shadow-md">
+                📼 Arquivo dos Dias
+            </button>
         </div>
-        
-        <div class="text-xs text-zinc-500 mt-auto pt-8">
-            Fui embora 15h00 • Sexta-feira<br>
-            Volto: 1 de Junho
+
+        <div class="mt-auto text-sm text-gray-500">
+            Fui embora às 15h00 de sexta-feira<br>
+            Volto: <span class="font-semibold">1 de Junho</span>
         </div>
     </div>
 
-    <!-- Conteúdo Principal -->
-    <div class="flex-1 p-10">
-        <div id="mainContent">
-            <!-- Conteúdo dinâmico aqui -->
+    <!-- Área Principal -->
+    <div class="flex-1 flex items-center justify-center p-10">
+        <div id="mainContent" class="max-w-2xl w-full text-center">
+            <!-- Conteúdo dinâmico -->
         </div>
     </div>
 
     <script>
         const dailyContent = {
             "2026-05-18": { 
-                title: "18 de Maio - Dia 1",
-                html: `<img src="https://picsum.photos/id/1015/800/450" class="rounded-xl mx-auto shadow-2xl"><br>
-                       <p class="text-3xl mt-8">Cheguei à praia. Vocês ainda estão no Excel.</p>`
+                title: "18 de Maio • Dia 1",
+                html: `<img src="https://picsum.photos/id/1015/900/500" class="rounded-3xl shadow-2xl mx-auto"><br>
+                       <p class="text-3xl mt-8">Cheguei à praia.<br>Vocês ainda estão no Excel.</p>`
             },
             "2026-05-19": { 
                 title: "19 de Maio",
                 html: `<div class="text-5xl">28800 ÷ 0.36 + 69</div>
-                       <div class="text-7xl text-yellow-300 mt-6">= 80085</div>
-                       <p class="text-2xl mt-8">Sim, ainda estou a gozar com isto.</p>`
+                       <div class="text-7xl text-amber-600 mt-6 font-bold">= 80085</div>
+                       <p class="text-2xl mt-10">Sim... ainda estou nisto.</p>`
             },
             "2026-05-20": { 
                 title: "20 de Maio",
-                html: `<p class="text-4xl">Deixem a Ana em paz.<br>Deixem-me a mim também.</p>`
+                html: `<p class="text-4xl leading-tight">Deixem a Ana em paz.<br>Deixem-me a mim também.</p>`
             },
-            "2026-05-23": { 
-                title: "23 de Maio",
-                html: `<img src="https://picsum.photos/id/201/800/450" class="rounded-xl mx-auto"><br>
-                       <p class="text-3xl mt-6">Aqui o wi-fi é fraco... tal como a minha vontade de responder emails.</p>`
+            "2026-05-21": { 
+                title: "21 de Maio",
+                html: `<img src="https://picsum.photos/id/133/900/500" class="rounded-3xl shadow-2xl mx-auto"><br>
+                       <p class="text-3xl mt-8">Mentalmente já estou a beber um cocktail.</p>`
             },
-            "2026-05-24": { 
-                title: "24 de Maio",
-                html: `<div class="text-6xl">Nível de "foda-se" atual:</div>
-                       <div class="text-8xl text-orange-400 mt-6">█████░░░░░ 52%</div>`
+            "2026-05-22": { 
+                title: "22 de Maio",
+                html: `<p class="text-4xl">Fim de semana oficial de férias.</p>
+                       <p class="text-5xl mt-10 text-amber-600">Não me liguem.</p>`
             },
             "2026-05-25": { 
                 title: "25 de Maio",
@@ -83,23 +95,23 @@
             },
             "2026-05-26": { 
                 title: "26 de Maio",
-                html: `<p class="text-4xl">Se estás a ler isto é porque...</p>
-                       <p class="text-5xl mt-8 text-yellow-300">ainda não aceitaste que estou de férias.</p>`
+                html: `<p class="text-4xl">Se estás a ler isto...</p>
+                       <p class="text-5xl mt-10 text-amber-600">ainda não aceitaste que estou de férias.</p>`
             },
             "2026-05-27": { 
                 title: "27 de Maio",
-                html: `<div class="text-7xl">( ͡° ͜ʖ ͡°)</div>
-                       <p class="text-3xl mt-10">Tu sabes o que isto significa.</p>`
+                html: `<div class="text-8xl">( ͡° ͜ʖ ͡°)</div>
+                       <p class="text-3xl mt-12">Tu sabes o que isto significa.</p>`
             },
             "2026-05-28": { 
                 title: "28 de Maio",
-                html: `<p class="text-4xl">Faltam 3 dias úteis...</p>
+                html: `<p class="text-4xl">Faltam poucos dias...</p>
                        <p class="text-5xl mt-8">para eu voltar a fingir que trabalho.</p>`
             },
             "2026-05-29": { 
-                title: "29 de Maio - Último Dia",
-                html: `<p class="text-5xl">Amanhã volto.</p>
-                       <p class="text-4xl mt-8 text-red-400">Mentalmente ainda estou aqui.</p>`
+                title: "29 de Maio • Último Dia",
+                html: `<p class="text-5xl">Amanhã volto...</p>
+                       <p class="text-4xl mt-10 text-gray-600">Mentalmente continuo na praia.</p>`
             }
         };
 
@@ -108,40 +120,39 @@
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
         }
 
-        function loadDay() {
+        function showToday() {
             const key = getTodayKey();
             const day = dailyContent[key] || dailyContent["2026-05-29"];
             
             document.getElementById("mainContent").innerHTML = `
-                <h1 class="text-5xl mb-2">${day.title}</h1>
-                <div class="text-xl text-zinc-400 mb-10">Férias Mode Activated</div>
+                <h1 class="text-5xl font-bold mb-2">${day.title}</h1>
+                <p class="text-xl text-gray-600 mb-12">Férias Mode • Ativado</p>
                 ${day.html}
             `;
         }
 
         function revealBoobs() {
             const div = document.createElement('div');
-            div.className = "fixed inset-0 bg-black/95 flex items-center justify-center z-50";
+            div.className = "fixed inset-0 bg-black/90 flex items-center justify-center z-50";
             div.innerHTML = `
                 <div class="text-center">
-                    <div class="text-8xl font-bold text-yellow-300 tracking-widest mb-4">80085</div>
-                    <div class="text-6xl text-pink-400 mb-12">BOOBS</div>
+                    <div class="text-8xl font-bold text-amber-300 tracking-widest mb-6">80085</div>
+                    <div class="text-7xl text-pink-400 mb-12">BOOBS</div>
                     <button onclick="this.parentElement.parentElement.remove()" 
-                            class="px-10 py-4 border border-yellow-300 text-yellow-300 hover:bg-yellow-300 hover:text-black transition">
-                        FECHAR (ou clica outra vez se quiseres)
+                            class="px-12 py-5 bg-white text-black rounded-2xl text-xl font-medium">
+                        Fechar
                     </button>
                 </div>
             `;
             document.body.appendChild(div);
         }
 
-        function showPage(page) {
-            if (page === 'archive') {
-                alert("📼 ARQUIVO DE FÉRIAS\n\n18 Mai → Cheguei à praia\n19 Mai → 80085\n20 Mai → Deixem a Ana em paz\n...\n\nVolto a 1 de Junho.");
-            }
+        function showArchive() {
+            alert("📼 ARQUIVO DE FÉRIAS\n\n18 Mai → Cheguei à praia\n19 Mai → 80085\n20 Mai → Deixem a Ana em paz\n21 Mai → Cocktail\n22 Mai → Fim de semana\n25 Mai → Motivação morta\n...\n\nVolto a 1 de Junho.");
         }
 
-        window.onload = loadDay;
+        // Carregar o dia atual automaticamente
+        window.onload = showToday;
     </script>
 </body>
 </html>
