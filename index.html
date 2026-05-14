@@ -2,101 +2,155 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <title>Volto a 1 de Junho... se voltar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>80085 DAYS - Volto a 1 de Junho</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=VT323&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Creepster&family=Courier+Prime&display=swap');
-
         body {
-            margin: 0;
-            height: 100vh;
-            background: radial-gradient(circle at center, #1a0000 0%, #000000 70%);
-            color: #ff2222;
-            font-family: 'Courier Prime', monospace;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            overflow: hidden;
-            position: relative;
+            background: radial-gradient(circle at center, #1a0000, #000000);
+            font-family: 'VT323', monospace;
+            color: #ff3333;
         }
-
-        /* Efeito de sangue/fumaça sutil */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(transparent, rgba(80,0,0,0.3));
+        .creep { font-family: 'Creepster', cursive; }
+        .scanline {
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(transparent 0px, rgba(255,30,30,0.07) 2px, transparent 4px);
             pointer-events: none;
-            animation: flicker 8s infinite alternate;
+            animation: scan 6s linear infinite;
+            z-index: 5;
         }
-
-        h1 {
-            font-family: 'Creepster', cursive;
-            font-size: 5.5vw;
-            margin: 10px 0 5px 0;
-            text-shadow: 0 0 30px #ff0000,
-                         0 0 60px #880000;
-            letter-spacing: 4px;
-        }
-
-        .sub {
-            font-size: 2.8vw;
-            margin: 15px 0;
-            color: #ff5555;
-            text-shadow: 0 0 15px #660000;
-        }
-
-        .emoji {
-            font-size: 9vw;
-            margin: 20px 0 30px 0;
-            filter: drop-shadow(0 0 25px #ff0000);
-            animation: pulse 3s infinite;
-        }
-
-        .text {
-            max-width: 75%;
-            font-size: 2.1vw;
-            line-height: 1.4;
-            color: #cc4444;
-            margin-top: 30px;
-        }
-
-        .footer {
-            position: absolute;
-            bottom: 35px;
-            font-size: 1.6vw;
-            color: #440000;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
-
-        @keyframes flicker {
-            0% { opacity: 0.6; }
-            100% { opacity: 1; }
-        }
+        @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(300%); } }
     </style>
 </head>
-<body>
-    <div class="emoji">☠️ 🪦 🖤</div>
-    
-    <h1>ESTOU MORTO</h1>
-    <div class="sub">Fui-me embora às 15h00 de sexta-feira</div>
-    <div class="sub">Volto apenas a 1 de Junho</div>
+<body class="min-h-screen flex flex-col">
+    <div class="scanline"></div>
 
-    <div class="text">
-        Se precisares de mim durante este período...<br>
-        reza.<br><br>
-        Ou envia um email.<br>
-        Eu não vou ler.
+    <!-- Menu Superior -->
+    <nav class="border-b border-red-900 bg-black/80 p-4 flex justify-between items-center sticky top-0 z-50">
+        <div class="text-2xl creep">80085 DAYS</div>
+        <div class="flex gap-6 text-lg">
+            <button onclick="showArchive()" class="hover:text-red-400 transition">ARQUIVO</button>
+            <button onclick="revealBoobs()" class="hover:text-yellow-300 transition">VER BOOBS</button>
+        </div>
+    </nav>
+
+    <div class="flex-1 flex items-center justify-center p-6">
+        <div id="mainContent" class="max-w-2xl w-full text-center">
+            <div id="dayTitle" class="text-6xl creep mb-4"></div>
+            <div id="contentArea" class="min-h-[420px]"></div>
+        </div>
     </div>
 
-    <div class="footer">
-        Modo: Alma Desligada • Responsabilidades: Enterradas<br>
-        Que tenham um excelente resto do mês sem mim.
+    <!-- Footer -->
+    <div class="text-center py-6 text-red-900 text-sm border-t border-red-900">
+        Fui embora às 15h de sexta-feira • Volto a 1 de Junho • Não me chateiem
     </div>
+
+    <!-- Áudio elements -->
+    <audio id="laugh" src="https://freesound.org/data/previews/276/276951_5121236-lq.mp3"></audio>
+    <audio id="sigh" src="https://freesound.org/data/previews/387/387186_7258994-lq.mp3"></audio>
+    <audio id="boing" src="https://freesound.org/data/previews/387/387187_7258994-lq.mp3"></audio>
+
+    <script>
+        const dailyContent = {
+            "2026-05-18": {
+                title: "18 MAIO - ASCII DAY",
+                html: `<div class="text-7xl leading-none space-y-2">
+                         <div>(.Y.)</div>
+                         <div>( . )( . )</div>
+                         <div>(.Y.)</div>
+                       </div>
+                       <p class="mt-8 text-2xl">Primeiro dia de liberdade visual</p>`
+            },
+            "2026-05-19": {
+                title: "19 MAIO - CÁLCULO DO DIA",
+                html: `<div class="text-4xl">28800 ÷ 0.36 + 69</div>
+                       <div class="text-6xl text-yellow-300 my-6">= 80085</div>
+                       <button onclick="playSound('boing')" class="mt-6 px-8 py-3 border border-red-600 hover:bg-red-900">Fazer o cálculo novamente</button>`
+            },
+            "2026-05-20": {
+                title: "20 MAIO - PROTEÇÃO",
+                html: `<div class="text-5xl">Deixem a Ana em paz.</div>
+                       <div class="text-6xl mt-10">(.)(.)</div>`
+            },
+            "2026-05-23": {
+                title: "23 MAIO - MENSAGEM DO ALÉM",
+                html: `<img src="https://picsum.photos/id/1015/600/300" class="mx-auto rounded border border-red-800"><br>
+                       <p class="text-3xl mt-6">A praia manda lembranças</p>`
+            },
+            "2026-05-24": {
+                title: "24 MAIO - NÍVEL DE FODA-SE",
+                html: `<div class="text-6xl">█░░░░░░░░░ 12%</div>
+                       <p class="text-2xl mt-8">A minha vontade de responder emails</p>`
+            },
+            "2026-05-25": {
+                title: "25 MAIO - MEDITAÇÃO",
+                html: `<div class="text-6xl">🪦</div>
+                       <p class="text-3xl mt-8">Aqui jaz a minha produtividade</p>`
+            },
+            "2026-05-26": {
+                title: "26 MAIO - FÓRMULA SECRETA",
+                html: `<div class="text-5xl">69 × 1160 + 69</div>
+                       <div class="text-6xl text-yellow-300 mt-6">= 80085</div>`
+            },
+            "2026-05-27": {
+                title: "27 MAIO - LENNY",
+                html: `<div class="text-7xl">( ͡° ͜ʖ ͡°)</div>
+                       <p class="text-3xl mt-10">Tu sabes porque estou aqui</p>`
+            },
+            "2026-05-28": {
+                title: "28 MAIO - QUASE NO FIM",
+                html: `<div class="text-5xl">Faltam poucos dias...</div>
+                       <div class="text-6xl mt-12">para eu continuar a ignorar-vos</div>`
+            },
+            "2026-05-29": {
+                title: "29 MAIO - ÚLTIMO DIA",
+                html: `<div class="text-5xl">Amanhã volto a fingir que trabalho</div>
+                       <div class="text-6xl mt-10">🖤</div>`
+            }
+        };
+
+        function getTodayKey() {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+        }
+
+        function loadDay() {
+            const key = getTodayKey();
+            const day = dailyContent[key] || dailyContent["2026-05-29"];
+
+            document.getElementById("dayTitle").innerHTML = day.title;
+            document.getElementById("contentArea").innerHTML = day.html;
+        }
+
+        function playSound(type) {
+            if (type === 'laugh') document.getElementById('laugh').play();
+            if (type === 'sigh') document.getElementById('sigh').play();
+            if (type === 'boing') document.getElementById('boing').play();
+        }
+
+        function revealBoobs() {
+            const reveal = document.createElement('div');
+            reveal.className = "fixed inset-0 bg-black/95 flex flex-col items-center justify-center z-50 text-yellow-300";
+            reveal.innerHTML = `
+                <div class="text-8xl font-bold tracking-widest mb-6 animate-pulse">80085</div>
+                <div class="text-6xl text-pink-400">BOOBS</div>
+                <button onclick="this.parentElement.remove()" class="mt-12 text-xl border border-red-600 px-10 py-4 hover:bg-red-900">
+                    FECHAR (mas tu sabes que queres ver outra vez)
+                </button>
+            `;
+            document.body.appendChild(reveal);
+            playSound('laugh');
+        }
+
+        function showArchive() {
+            alert("📼 ARQUIVO DE FÉRIAS\n\n18 Mai - ASCII Boobs\n19 Mai - Matemática\n20 Mai - Deixem a Ana em paz\n...\n\nVolto a 1 de Junho. Calma.");
+        }
+
+        // Iniciar
+        window.onload = loadDay;
+    </script>
 </body>
 </html>
