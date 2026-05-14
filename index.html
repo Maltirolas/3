@@ -176,6 +176,11 @@
             btn.innerHTML = "❌ Errado... Tenta novamente";
         }
 
+        function validateAnswer() {
+            const resultDiv = document.getElementById("result28");
+            resultDiv.innerHTML = `<span class="text-green-600">Resposta validada: 80085</span>`;
+        }
+        
         function revealBoobs() {
             const div = document.createElement('div');
             div.className = "fixed inset-0 bg-black/95 flex items-center justify-center z-50";
