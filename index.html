@@ -123,7 +123,7 @@
                 html: `<p class="text-3xl mb-8">Decifra o código Morse:</p>
                        <p class="text-4xl font-mono tracking-widest mb-8">-... --- --- -... ... </p>
                        <div class="max-w-md mx-auto">
-                           <input id="numberInput" type="text" placeholder="Escreve a tua resposta" 
+                           <input id="numberInput1" type="text" placeholder="Escreve a tua resposta" 
                                   class="w-full text-center text-3xl py-6 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-amber-400">
                            <button onclick="validateAnswer()" 
                                    class="mt-6 w-full py-6 bg-amber-200 hover:bg-amber-300 rounded-2xl text-2xl font-medium">
@@ -271,7 +271,7 @@
 
         function validateAnswer() {
             const resultDiv = document.getElementById("result19");
-            const value = document.getElementById("numberInput").value.trim().toLowerCase();
+            const value = document.getElementById("numberInput1").value.trim().toLowerCase();
 
     if (value === "boobs") {
 
