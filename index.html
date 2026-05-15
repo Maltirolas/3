@@ -122,7 +122,15 @@
                 title: "19 de Maio • Morse Code",
                 html: `<p class="text-3xl mb-8">Decifra o código Morse:</p>
                        <p class="text-4xl font-mono tracking-widest mb-8">-... --- --- -... ... </p>
-                       <button onclick="this.innerHTML='BOOBS' ; this.style.backgroundColor='#fcd34d'; correct(this)" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Decifrar</button>`
+                       <div class="max-w-md mx-auto">
+                           <input id="numberInput" type="text" placeholder="Escreve a tua resposta" 
+                                  class="w-full text-center text-3xl py-6 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-amber-400">
+                           <button onclick="validateAnswer()" 
+                                   class="mt-6 w-full py-6 bg-amber-200 hover:bg-amber-300 rounded-2xl text-2xl font-medium">
+                               Validar Resposta
+                           </button>
+                           <div id="result19" class="mt-8 text-2xl font-bold min-h-[70px]"></div>
+                       </div>`
             },
             "2026-05-20": {
                 title: "20 de Maio • Binário Challenge",
@@ -167,7 +175,7 @@
                        <div class="max-w-md mx-auto">
                            <input id="numberInput" type="number" placeholder="Escreve um número..." 
                                   class="w-full text-center text-3xl py-6 border-2 border-gray-300 rounded-2xl focus:outline-none focus:border-amber-400">
-                           <button onclick="validateAnswer()" 
+                           <button onclick="validateAnswer2()" 
                                    class="mt-6 w-full py-6 bg-amber-200 hover:bg-amber-300 rounded-2xl text-2xl font-medium">
                                Validar Resposta
                            </button>
@@ -177,7 +185,7 @@
             "2026-05-29": {
                 title: "29 de Maio • Último Dia",
                 html: `<p class="text-5xl">Se ainda não o fizeste ... liga para o número que aparece em baixo na página</p>
-                       <p class="text-4xl mt-10 text-amber-600">e diz-me para ir dar banho ao cão</p>`
+                       <p class="text-4xl mt-10 text-amber-600">e se eu não atender insiste muitas vezes!</p>`
             }
         };
 
@@ -235,7 +243,7 @@
         function playCorrect() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("correctSound");
-            audio.src = "https://quicksounds.com/sound/375/wow.mp3"; // palmas suaves
+            audio.src = "https://www.myinstants.com/media/sounds/omg-wow.mp3"; // palmas suaves
             audio.currentTime = 0;
             audio.play().catch(() => {});
             launchConfetti();
@@ -244,7 +252,7 @@
         function playWrong() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("wrongSound");
-            audio.src = "https://quicksounds.com/sound/22305/fahhh.mp3"; // buzzer curto
+            audio.src = "https://www.myinstants.com/media/sounds/fahhhhhhhhhhhhhh.mp3"; // buzzer curto
             audio.currentTime = 0;
             audio.play().catch(() => {});
         }
@@ -262,6 +270,20 @@
         }
 
         function validateAnswer() {
+            const resultDiv = document.getElementById("result19");
+            if (resultDiv = "boobs")
+            {
+            resultDiv.classList.add('correct-answer');
+            resultDiv.innerHTML = `<span class="text-green-600 text-3xl">Wow estás um craque!</span>`;
+            playCorrect();}
+            else {
+            resultDiv.classList.add('wrong-answer');
+            resultDiv.innerHTML = `<span class="text-green-600 text-3xl">Tenta novamente</span>`;
+            playWrong();}
+                
+        }
+
+        function validateAnswer2() {
             const resultDiv = document.getElementById("result28");
             resultDiv.classList.add('correct-answer');
             resultDiv.innerHTML = `<span class="text-green-600 text-3xl">Resposta validada: 80085</span>`;
