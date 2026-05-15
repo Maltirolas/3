@@ -244,14 +244,14 @@
         function playWrong() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("wrongSound");
-            audio.src = "https://assets.mixkit.co/sfx/preview/2597/2597.wav"; // buzzer curto clássico
+            audio.src = "https://assets.mixkit.co/sfx/preview/2597/2597.wav"; // buzzer curto
             audio.currentTime = 0;
             audio.play().catch(() => {});
         }
 
         function playTrollSound() {
             const audio = document.getElementById("trollSound");
-            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"; // Rick Astley style
+            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3";
             audio.currentTime = 0;
             audio.play().catch(() => {});
         }
