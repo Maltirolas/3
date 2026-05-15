@@ -271,7 +271,6 @@
 
         function validateAnswer() {
             const resultDiv = document.getElementById("result19");
-           
             if (document.getElementById("inputNumber") == "boobs")
             {
             resultDiv.classList.add('correct-answer');
@@ -280,10 +279,7 @@
             else {
             resultDiv.classList.add('wrong-answer');
             resultDiv.innerHTML = `<span class="text-green-600 text-3xl">Tenta novamente</span>`;
-            playWrong();}
-
-            //resultDiv.classList.add(document.getElementById("inputNumber");
-                
+            playWrong();}  
         }
 
         function validateAnswer2() {
