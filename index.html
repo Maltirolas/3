@@ -3,16 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DESAFIO DAS FÉRIAS DO HUGO!</title>
+    <title>DESAFIO DE FÉRIAS - HUGO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { background: #f8f1e9; color: #1a1a1a; font-family: system-ui, sans-serif; }
-        .btn { transition: all 0.3s ease; }
-        .btn:hover { transform: translateY(-3px); }
-        pre { font-family: monospace; }
+        body { 
+            background: #f8f1e9; 
+            color: #1a1a1a; 
+            font-family: system-ui, sans-serif; 
+        }
+        .btn { 
+            transition: all 0.3s ease; 
+        }
+        .btn:hover { 
+            transform: translateY(-4px); 
+        }
+        .troll-btn {
+            animation: trollPulse 2.3s infinite ease-in-out;
+        }
+        @keyframes trollPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.18); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes correctPop {
+            0% { transform: scale(0.7); }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+        .card {
+            animation: fadeInUp 0.7s ease forwards;
+        }
     </style>
 </head>
 <body class="min-h-screen flex">
+
+    <!-- Botão Troll Fixo 80085 -->
+    <button onclick="openTrollSite()" 
+            class="troll-btn fixed top-6 right-6 bg-black hover:bg-red-600 text-white px-9 py-5 rounded-3xl text-2xl font-bold z-50 flex items-center gap-3 shadow-2xl">
+        <span>80085</span>
+        <span class="text-3xl">🔥</span>
+    </button>
 
     <!-- Menu Lateral -->
     <div class="w-80 bg-white border-r border-gray-200 p-6 flex flex-col shadow-xl overflow-y-auto">
@@ -33,60 +66,59 @@
         const vacationDays = ["2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-25","2026-05-26","2026-05-27","2026-05-28","2026-05-29"];
 
         const dailyContent = {
-            "2026-05-18": { 
+            "2026-05-18": {
                 title: "18 de Maio • Nível Iniciante",
                 html: `<p class="text-3xl mb-8">Primeiro desafio das férias:</p>
-                       <p class="text-2xl">Escolhe o número abaixo em que o resultado da soma dos seus dígitos resulta no número 21</p>
+                       <p class="text-2xl">Escolhe o número abaixo em que a soma dos dígitos dá 21</p>
                        <div class="grid grid-cols-3 gap-4 mt-10">
                            <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">69827</button>
                            <button onclick="correct(this)" class="btn py-6 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">80085</button>
                            <button onclick="wrong(this)" class="btn py-6 bg-white border-2 border-gray-300 rounded-2xl">47769</button>
                        </div>`
             },
-            "2026-05-19": { 
+            "2026-05-19": {
                 title: "19 de Maio • Morse Code",
                 html: `<p class="text-3xl mb-8">Decifra o código Morse:</p>
                        <p class="text-4xl font-mono tracking-widest mb-8">-... --- --- -... ... </p>
                        <button onclick="this.innerHTML='BOOBS' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Decifrar</button>`
             },
-            "2026-05-20": { 
+            "2026-05-20": {
                 title: "20 de Maio • Binário Challenge",
                 html: `<p class="text-3xl mb-8">Converte este binário:</p>
                        <p class="text-3xl font-mono mb-8">01100010 01101111 01101111 01100010 01110011</p>
                        <button onclick="this.innerHTML='BOOBS' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Converter</button>`
             },
-            "2026-05-21": { 
+            "2026-05-21": {
                 title: "21 de Maio • Cifra de César",
                 html: `<p class="text-3xl mb-8">Decifra esta mensagem (Cifra de César +3):</p>
                        <p class="text-3xl font-mono mb-8">ErrEv</p>
                        <button onclick="this.innerHTML='BooBs' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Decifrar</button>`
             },
-            "2026-05-22": { 
-                title: "22 de Maio • ASCII Art + Número",
+            "2026-05-22": {
+                title: "22 de Maio • ASCII Art",
                 html: `<pre class="text-5xl leading-none mx-auto mb-8">( . )( . )<br>   (.Y.)<br>  ( . )( . )</pre>
-                       <button onclick="this.innerHTML='Estás a ficar um mestre... é 80085 of course' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Qual é correspondente número a este ASCII ART?</button>`
+                       <button onclick="this.innerHTML='Estás a ficar um mestre... é 80085' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Qual é o número?</button>`
             },
-            "2026-05-25": { 
+            "2026-05-25": {
                 title: "25 de Maio • Matemática Troll",
                 html: `<p class="text-3xl mb-8">Qual é o resultado desta equação?</p>
                        <p class="text-4xl font-mono">69 × 1160 + 69 × 1 - 0 × 999999 + 696</p>
                        <button onclick="this.innerHTML='Custa muito pegar na calculadora???' ; this.style.fontSize='2.5rem'" class="btn px-16 py-6 bg-amber-200 rounded-2xl text-2xl">Calcular</button>`
             },
-            "2026-05-26": { 
+            "2026-05-26": {
                 title: "26 de Maio • Pergunta Traiçoeira",
-                html: `<p class="text-3xl mb-8">O que é estás à espera de ver quando lês o QR Code na minha secretária?</p>
+                html: `<p class="text-3xl mb-8">O que é que estás à espera de ver quando lês o QR Code?</p>
                        <div class="grid grid-cols-2 gap-6 mt-8">
                            <button onclick="wrong(this)" class="btn py-8 bg-white border-2 border-gray-300 rounded-2xl">Fotos de pés</button>
                            <button onclick="correct(this)" class="btn py-8 bg-amber-200 border-2 border-amber-400 rounded-2xl font-bold">BOOBS</button>
                        </div>`
             },
-            "2026-05-27": { 
+            "2026-05-27": {
                 title: "27 de Maio • Código Secreto",
-                html: `<p class="text-3xl mb-8">Reponde à pergunta:</p>
-                       <p class="text-4xl font-mono mb-8">Do que mais gosta um macho alfa?</p>
+                html: `<p class="text-3xl mb-8">Do que mais gosta um macho alfa?</p>
                        <button onclick="this.innerHTML='Just Kidding... é BOOBS' ; this.style.backgroundColor='#fcd34d'" class="btn px-12 py-6 bg-amber-200 rounded-2xl text-2xl">Criar uma família com valores</button>`
             },
-            "2026-05-28": { 
+            "2026-05-28": {
                 title: "28 de Maio • Desafio Final",
                 html: `<p class="text-3xl mb-8">Admiro a minha capacidade de vos fazer ler um QR Code todos os dias mesmo não estando sequer no escritório...</p>
                        <p class="text-2xl mt-6 mb-8">De 1 a 80085, quanto sentes a minha falta?</p>
@@ -97,10 +129,10 @@
                                    class="mt-6 w-full py-6 bg-amber-200 hover:bg-amber-300 rounded-2xl text-2xl font-medium">
                                Validar Resposta
                            </button>
-                           <div id="result28" class="mt-6 text-2xl font-bold"></div>
+                           <div id="result28" class="mt-8 text-2xl font-bold min-h-[70px]"></div>
                        </div>`
             },
-            "2026-05-29": { 
+            "2026-05-29": {
                 title: "29 de Maio • Último Dia",
                 html: `<p class="text-5xl">Se ainda não o fizeste ... liga para o número que aparece em baixo na página</p>
                        <p class="text-4xl mt-10 text-amber-600">e diz-me para ir dar banho ao cão</p>`
@@ -112,10 +144,41 @@
             return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
         }
 
-        function isAfterVacation() {
+        function isBeforeStart() {
             const today = new Date();
-            const end = new Date("2026-05-29");
-            return today > end;
+            const start = new Date("2026-05-18");
+            return today < start;
+        }
+
+        function showPreStartScreen() {
+            document.getElementById("mainContent").innerHTML = `
+                <div class="text-center max-w-lg mx-auto card">
+                    <div class="text-7xl mb-10">⏳</div>
+                    <h1 class="text-5xl font-bold mb-8 leading-tight">"A paciência é amarga, mas seu fruto é doce."</h1>
+                    <p class="text-xl italic mb-12">- Jean Jacques Rousseau</p>
+                    <p class="text-3xl text-amber-600">Volta no dia 18 de Maio</p>
+                </div>
+            `;
+        }
+
+        function validateAnswer() {
+            const resultDiv = document.getElementById("result28");
+            resultDiv.innerHTML = `<span class="text-green-600 text-3xl">Resposta validada: 80085</span>`;
+        }
+
+        function openTrollSite() {
+            window.open('https://maltirolas.github.io/1/', '_blank');
+        }
+
+        function correct(btn) {
+            btn.style.backgroundColor = "#86efac";
+            btn.style.color = "#166534";
+            btn.innerHTML = "✅ CERTO! É 80085";
+        }
+
+        function wrong(btn) {
+            btn.style.backgroundColor = "#fda4af";
+            btn.innerHTML = "❌ Errado... Tenta novamente";
         }
 
         function generateSidebar() {
@@ -137,8 +200,8 @@
         }
 
         function showToday() {
-            if (isAfterVacation()) {
-                showFinalScreen();
+            if (isBeforeStart()) {
+                showPreStartScreen();
                 return;
             }
             const key = getTodayKey();
@@ -148,50 +211,12 @@
         function showDay(key) {
             const day = dailyContent[key] || dailyContent["2026-05-29"];
             document.getElementById("mainContent").innerHTML = `
-                <h1 class="text-5xl font-bold mb-3">${day.title}</h1>
-                <p class="text-xl text-gray-600 mb-10">Férias Mode • Impossible Quizz</p>
-                ${day.html}
-            `;
-        }
-
-        function showFinalScreen() {
-            document.getElementById("mainContent").innerHTML = `
-                <div class="text-center py-20">
-                    <div class="text-6xl mb-8">🏁</div>
-                    <h1 class="text-5xl font-bold mb-6">Obrigado por Jogares</h1>
-                    <p class="text-6xl text-amber-600 mb-8">Haja paciência</p>
-                    <p class="text-2xl">Em Setembro à mais!</p>
+                <div class="card">
+                    <h1 class="text-5xl font-bold mb-3">${day.title}</h1>
+                    <p class="text-xl text-gray-600 mb-10">Férias Mode • Impossible Quizz</p>
+                    ${day.html}
                 </div>
             `;
-        }
-
-        function correct(btn) {
-            btn.style.backgroundColor = "#86efac";
-            btn.style.color = "#166534";
-            btn.innerHTML = "✅ CERTO! É 80085";
-        }
-
-        function wrong(btn) {
-            btn.style.backgroundColor = "#fda4af";
-            btn.innerHTML = "❌ Errado... Tenta novamente";
-        }
-
-        function validateAnswer() {
-            const resultDiv = document.getElementById("result28");
-            resultDiv.innerHTML = `<span class="text-green-600">Resposta validada: 80085</span>`;
-        }
-        
-        function revealBoobs() {
-            const div = document.createElement('div');
-            div.className = "fixed inset-0 bg-black/95 flex items-center justify-center z-50";
-            div.innerHTML = `
-                <div class="text-center">
-                    <div class="text-8xl font-bold text-amber-300 tracking-widest mb-6">80085</div>
-                    <div class="text-7xl text-pink-400 mb-12">BOOBS</div>
-                    <button onclick="this.parentElement.parentElement.remove()" class="px-12 py-5 bg-white text-black rounded-2xl text-xl font-medium">Fechar</button>
-                </div>
-            `;
-            document.body.appendChild(div);
         }
 
         window.onload = () => {
