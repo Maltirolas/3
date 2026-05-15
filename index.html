@@ -10,7 +10,6 @@
             background: #f8f1e9; 
             color: #1a1a1a; 
             font-family: system-ui, sans-serif; 
-            overflow-x: hidden;
         }
 
         @keyframes trollPulse {
@@ -98,7 +97,7 @@
         </div>
     </div>
 
-    <!-- Áudios Curtos -->
+    <!-- Áudios -->
     <audio id="correctSound" preload="auto"></audio>
     <audio id="wrongSound" preload="auto"></audio>
     <audio id="trollSound" preload="auto"></audio>
@@ -211,7 +210,6 @@
             function animate() {
                 confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
                 let alive = false;
-
                 particles.forEach(p => {
                     p.y += p.speed;
                     p.angle += p.rotationSpeed;
@@ -223,7 +221,6 @@
                     confettiCtx.restore();
                     if (p.y < confettiCanvas.height) alive = true;
                 });
-
                 if (alive) requestAnimationFrame(animate);
             }
             animate();
@@ -238,7 +235,7 @@
         function playCorrect() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("correctSound");
-            audio.src = "https://assets.mixkit.co/sfx/preview/2967/2967.wav"; // palmas suaves e curtas
+            audio.src = "https://assets.mixkit.co/sfx/preview/2967/2967.wav"; // palmas suaves curtas
             audio.currentTime = 0;
             audio.play().catch(() => {});
             launchConfetti();
@@ -254,7 +251,7 @@
 
         function playTrollSound() {
             const audio = document.getElementById("trollSound");
-            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3";
+            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"; // Rick Astley style
             audio.currentTime = 0;
             audio.play().catch(() => {});
         }
