@@ -57,7 +57,7 @@
 
     <!-- Botão Ativar Sons -->
     <button id="soundBtn" onclick="enableSounds()" 
-            class="fixed top-6 left-6 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-2xl text-sm font-medium z-50 shadow-lg">
+            class="fixed bottom-6 right-6 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-2xl text-sm font-medium z-50 shadow-lg">
         🔊 Ativar Sons
     </button>
 
@@ -98,7 +98,7 @@
         </div>
     </div>
 
-    <!-- Áudios -->
+    <!-- Áudios Curtos -->
     <audio id="correctSound" preload="auto"></audio>
     <audio id="wrongSound" preload="auto"></audio>
     <audio id="trollSound" preload="auto"></audio>
@@ -238,7 +238,7 @@
         function playCorrect() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("correctSound");
-            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+            audio.src = "https://assets.mixkit.co/sfx/preview/2967/2967.wav"; // palmas suaves e curtas
             audio.currentTime = 0;
             audio.play().catch(() => {});
             launchConfetti();
@@ -247,7 +247,7 @@
         function playWrong() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("wrongSound");
-            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3";
+            audio.src = "https://assets.mixkit.co/sfx/preview/2597/2597.wav"; // buzzer curto clássico
             audio.currentTime = 0;
             audio.play().catch(() => {});
         }
@@ -320,11 +320,15 @@
 
         function showPreStartScreen() {
             document.getElementById("mainContent").innerHTML = `
-                <div class="text-center max-w-lg mx-auto card">
+                <div class="text-center max-w-lg mx-auto card bg-black text-white p-16 rounded-3xl">
                     <div class="text-7xl mb-10">⏳</div>
                     <h1 class="text-5xl font-bold mb-8 leading-tight">"A paciência é amarga, mas seu fruto é doce."</h1>
                     <p class="text-xl italic mb-12">- Jean Jacques Rousseau</p>
-                    <p class="text-3xl text-amber-600">Volta no dia 18 de Maio</p>
+                    <p class="text-3xl mb-10">Volta no dia 18 de Maio</p>
+                    <button onclick="openTrollSite()" 
+                            class="px-10 py-5 bg-white text-black rounded-2xl text-xl font-medium hover:bg-amber-100">
+                        Entrar Antecipadamente
+                    </button>
                 </div>
             `;
         }
