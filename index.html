@@ -235,7 +235,7 @@
         function playCorrect() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("correctSound");
-            audio.src = "https://assets.mixkit.co/sfx/preview/2967/2967.wav"; // palmas suaves curtas
+            audio.src = "https://assets.mixkit.co/sfx/preview/2967/2967.wav"; // palmas suaves
             audio.currentTime = 0;
             audio.play().catch(() => {});
             launchConfetti();
@@ -272,7 +272,7 @@
             btn.classList.add('correct-answer');
             btn.style.backgroundColor = "#86efac";
             btn.style.color = "#166534";
-            btn.innerHTML = "✅ CERTO! É 80085";
+            // NÃO sobrescreve o texto!
             playCorrect();
         }
 
