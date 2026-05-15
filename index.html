@@ -55,6 +55,12 @@
 </head>
 <body class="min-h-screen flex">
 
+    <!-- Botão Ativar Sons -->
+    <button id="soundBtn" onclick="enableSounds()" 
+            class="fixed top-6 left-6 bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-2xl text-sm font-medium z-50 shadow-lg">
+        🔊 Ativar Sons
+    </button>
+
     <!-- Botão Troll Fixo 80085 -->
     <button onclick="openTrollSite()" 
             class="troll-btn fixed top-6 right-6 bg-black hover:bg-red-600 text-white px-9 py-5 rounded-3xl text-2xl font-bold z-50 flex items-center gap-3 shadow-2xl">
@@ -77,15 +83,29 @@
         <div id="mainContent" class="max-w-2xl w-full text-center"></div>
     </div>
 
-    <!-- Canvas para Confetti -->
+    <!-- Canvas Confetti -->
     <canvas id="confetti" class="fixed inset-0 pointer-events-none z-50"></canvas>
 
-    <!-- Sons -->
-    <audio id="correctSound" src="https://freesound.org/data/previews/387/387186_7258994-lq.mp3"></audio>
-    <audio id="wrongSound" src="https://freesound.org/data/previews/276/276951_5121236-lq.mp3"></audio>
-    <audio id="trollSound" src="https://freesound.org/data/previews/387/387187_7258994-lq.mp3"></audio>
+    <!-- Overlay de Erro -->
+    <div id="errorOverlay" class="hidden fixed inset-0 bg-black/95 flex items-center justify-center z-[100]">
+        <div class="text-center">
+            <div class="text-6xl mb-6">😵‍💫</div>
+            <div class="text-5xl font-bold text-red-500 mb-10">ERRADO!</div>
+            <button onclick="tryAgain()" 
+                    class="px-12 py-6 bg-white text-black rounded-3xl text-2xl font-medium hover:bg-red-100 transition">
+                Tentar Novamente
+            </button>
+        </div>
+    </div>
+
+    <!-- Áudios -->
+    <audio id="correctSound" preload="auto"></audio>
+    <audio id="wrongSound" preload="auto"></audio>
+    <audio id="trollSound" preload="auto"></audio>
 
     <script>
+        let soundsEnabled = false;
+
         const vacationDays = ["2026-05-18","2026-05-19","2026-05-20","2026-05-21","2026-05-22","2026-05-25","2026-05-26","2026-05-27","2026-05-28","2026-05-29"];
 
         const dailyContent = {
@@ -209,20 +229,34 @@
             animate();
         }
 
+        function enableSounds() {
+            soundsEnabled = true;
+            document.getElementById("soundBtn").innerHTML = "✅ Sons Ativados";
+            document.getElementById("soundBtn").disabled = true;
+        }
+
         function playCorrect() {
-            document.getElementById("correctSound").currentTime = 0;
-            document.getElementById("correctSound").play();
+            if (!soundsEnabled) return;
+            const audio = document.getElementById("correctSound");
+            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
             launchConfetti();
         }
 
         function playWrong() {
-            document.getElementById("wrongSound").currentTime = 0;
-            document.getElementById("wrongSound").play();
+            if (!soundsEnabled) return;
+            const audio = document.getElementById("wrongSound");
+            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3";
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
         }
 
         function playTrollSound() {
-            document.getElementById("trollSound").currentTime = 0;
-            document.getElementById("trollSound").play();
+            const audio = document.getElementById("trollSound");
+            audio.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3";
+            audio.currentTime = 0;
+            audio.play().catch(() => {});
         }
 
         function openTrollSite() {
@@ -246,11 +280,13 @@
         }
 
         function wrong(btn) {
-            btn.classList.add('shake');
-            btn.style.backgroundColor = "#fda4af";
-            btn.innerHTML = "❌ Errado... Tenta novamente";
+            document.getElementById("errorOverlay").classList.remove("hidden");
             playWrong();
-            setTimeout(() => btn.classList.remove('shake'), 600);
+        }
+
+        function tryAgain() {
+            document.getElementById("errorOverlay").classList.add("hidden");
+            openTrollSite();
         }
 
         function generateSidebar() {
