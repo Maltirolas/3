@@ -271,15 +271,33 @@
 
         function validateAnswer() {
             const resultDiv = document.getElementById("result19");
-            if (document.getElementById("inputNumber").value == "boobs")
-            {
-            resultDiv.classList.add('correct-answer');
-            resultDiv.innerHTML = `<span class="text-green-600 text-3xl">Wow estás um craque!</span>`;
-            playCorrect();}
-            else {
-            resultDiv.classList.add('wrong-answer');
-            resultDiv.innerHTML = `<span class="text-green-600 text-3xl">Tenta novamente</span>`;
-            playWrong();}  
+            const value = document.getElementById("inputNumber").value.trim().toLowerCase();
+
+    if (value === "boobs") {
+
+        resultDiv.classList.remove('wrong-answer');
+        resultDiv.classList.add('correct-answer');
+
+        resultDiv.innerHTML =
+            `<span class="text-green-600 text-3xl">
+                Wow estás um craque!
+            </span>`;
+
+        playCorrect();
+
+    } else {
+
+        resultDiv.classList.remove('correct-answer');
+        resultDiv.classList.add('wrong-answer');
+
+        resultDiv.innerHTML =
+            `<span class="text-red-600 text-3xl">
+                Tenta novamente
+            </span>`;
+
+        playWrong();
+    }
+
         }
 
         function validateAnswer2() {
