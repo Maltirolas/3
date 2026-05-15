@@ -235,7 +235,7 @@
         function playCorrect() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("correctSound");
-            audio.src = "https://www.myinstants.com/pt/instant/certo-60553/?utm_source=copy&utm_medium=share.wav"; // palmas suaves
+            audio.src = "https://www.myinstants.com/pt/instant/certo-60553/?utm_source=copy&utm_medium=share"; // palmas suaves
             audio.currentTime = 0;
             audio.play().catch(() => {});
             launchConfetti();
@@ -244,14 +244,14 @@
         function playWrong() {
             if (!soundsEnabled) return;
             const audio = document.getElementById("wrongSound");
-            audio.src = "https://www.myinstants.com/pt/instant/fahhhhhhhhhhhhhh-3525/?utm_source=copy&utm_medium=share.wav"; // buzzer curto
+            audio.src = "https://www.myinstants.com/pt/instant/fahhhhhhhhhhhhhh-3525/?utm_source=copy&utm_medium=share"; // buzzer curto
             audio.currentTime = 0;
             audio.play().catch(() => {});
         }
 
         function playTrollSound() {
             const audio = document.getElementById("trollSound");
-            audio.src = "https://drive.google.com/file/d/0B-klwLEjaXWcZHR5SmJJWEwtYnc/view?resourcekey=0-D33DYWMxjVde0g1m7qsoZw.wav";
+            audio.src = "https://drive.google.com/file/d/0B-klwLEjaXWcZHR5SmJJWEwtYnc/view?resourcekey=0-D33DYWMxjVde0g1m7qsoZw";
             audio.currentTime = 0;
             audio.play().catch(() => {});
         }
